@@ -160,7 +160,7 @@ function loadSupabaseLibrary() {
 async function loadCurrentUser() {
   const {
     data: { user }
-  } = await supabaseClient.auth.getUser();
+  } = await supabaseClientClient.auth.getUser();
 
   currentUser = user || null;
 
@@ -169,7 +169,7 @@ async function loadCurrentUser() {
     return;
   }
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('profiles')
     .select('id,email,role')
     .eq('id', currentUser.id)
@@ -185,7 +185,7 @@ async function loadCurrentUser() {
 }
 
 async function login(email, password) {
-  const { error } = await supabaseClient.auth.signInWithPassword({
+  const { error } = await supabaseClientClient.auth.signInWithPassword({
     email,
     password
   });
@@ -203,7 +203,7 @@ async function login(email, password) {
 }
 
 async function logout() {
-  await supabaseClient.auth.signOut();
+  await supabaseClientClient.auth.signOut();
 
   currentUser = null;
   currentProfile = null;
@@ -467,7 +467,7 @@ function openLoginModal() {
    ========================================================= */
 
 async function loadTerritories() {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('territories')
     .select(`
       id,
@@ -801,7 +801,7 @@ async function confirmRaid() {
   button.disabled = true;
 
   const { data, error } =
-    await supabaseClient.rpc('raid_territory', {
+    await supabaseClientClient.rpc('raid_territory', {
       p_territory_id: raidTarget.id,
       p_holder_name: selectedFaction
     });
@@ -843,7 +843,7 @@ function closeRaidModal() {
 async function loadProfiles() {
   if (!isAdmin()) return;
 
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('profiles')
     .select('id,email,role,created_at')
     .order('email');
@@ -861,7 +861,7 @@ async function changeRole(userId, role) {
   if (!isAdmin()) return;
 
   const { error } =
-    await supabaseClient.rpc('set_user_role', {
+    await supabaseClientClient.rpc('set_user_role', {
       p_user_id: userId,
       p_role: role
     });
