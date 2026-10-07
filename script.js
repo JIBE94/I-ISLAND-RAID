@@ -160,7 +160,7 @@ function loadSupabaseLibrary() {
 async function loadCurrentUser() {
   const {
     data: { user }
-  } = await supabaseClientClient.auth.getUser();
+  } = await supabaseClient.auth.getUser();
 
   currentUser = user || null;
 
@@ -185,7 +185,7 @@ async function loadCurrentUser() {
 }
 
 async function login(email, password) {
-  const { error } = await supabaseClientClient.auth.signInWithPassword({
+  const { error } = await supabaseClient.auth.signInWithPassword({
     email,
     password
   });
@@ -203,7 +203,7 @@ async function login(email, password) {
 }
 
 async function logout() {
-  await supabaseClientClient.auth.signOut();
+  await supabaseClient.auth.signOut();
 
   currentUser = null;
   currentProfile = null;
@@ -801,7 +801,7 @@ async function confirmRaid() {
   button.disabled = true;
 
   const { data, error } =
-    await supabaseClientClient.rpc('raid_territory', {
+    await supabaseClient.rpc('raid_territory', {
       p_territory_id: raidTarget.id,
       p_holder_name: selectedFaction
     });
@@ -861,7 +861,7 @@ async function changeRole(userId, role) {
   if (!isAdmin()) return;
 
   const { error } =
-    await supabaseClientClient.rpc('set_user_role', {
+    await supabaseClient.rpc('set_user_role', {
       p_user_id: userId,
       p_role: role
     });
