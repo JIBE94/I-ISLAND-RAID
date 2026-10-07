@@ -128,12 +128,15 @@ function isAdmin() {
    ========================================================= */
 
 function loadSupabaseLibrary() {
-  return new Promise((resolve, reject) => {
-    if (window.supabase) {
-      resolve();
-      return;
-    }
+  if (window.supabase) {
+    return Promise.resolve();
+  }
 
+  if (loadSupabaseLibrary.promise) {
+    return loadSupabaseLibrary.promise;
+  }
+
+  loadSupabaseLibrary.promise = new Promise((resolve, reject) => {
     const script = document.createElement('script');
 
     script.src =
@@ -146,6 +149,8 @@ function loadSupabaseLibrary() {
 
     document.head.appendChild(script);
   });
+
+  return loadSupabaseLibrary.promise;
 }
 
 /* =========================================================
