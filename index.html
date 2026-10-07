@@ -3,85 +3,380 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="I-ISLAND — système de contrôle des territoires et des raids."
+  />
+
   <meta name="theme-color" content="#05070a" />
-  <meta name="description" content="I-ISLAND — système de contrôle des territoires et des raids." />
+
   <title>I-ISLAND — Territory Control</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="noise"></div>
+
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="noise"></div>
+
+  <!-- =====================================================
+       BARRE DU HAUT
+       ===================================================== -->
 
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="I-ISLAND accueil"><span class="brand-mark">I</span><span>I-ISLAND</span></a>
-    <div class="status"><span class="pulse"></span> TERRITORY CONTROL <span class="sep">/</span> LIVE</div>
+
+    <a
+      class="brand"
+      href="#top"
+      aria-label="I-ISLAND accueil"
+    >
+      <span class="brand-mark">I</span>
+      <span>I-ISLAND</span>
+    </a>
+
+    <div class="status">
+      <span class="pulse"></span>
+      TERRITORY CONTROL
+      <span class="sep">/</span>
+      LIVE
+    </div>
+
   </header>
 
+
+  <!-- =====================================================
+       CONTENU PRINCIPAL
+       ===================================================== -->
+
   <main id="top">
+
+    <!-- HERO -->
+
     <section class="hero">
+
       <div class="hero-copy">
-        <div class="hero-kicker"><span></span> ISLAND CONTROL SYSTEM <span></span></div>
-        <h1>I-<span>ISLAND</span></h1>
-        <p class="hero-title">CONQUÉRIS. PROTÈGE. DOMINE.</p>
-        <p class="intro">Choisis une organisation, sélectionne un territoire et lance un raid. Après chaque prise de contrôle, le secteur passe automatiquement sous protection pendant <strong>3 jours</strong>.</p>
-        <a class="hero-cta" href="#control"><span>ACCÉDER AU CONTRÔLE</span><b>↓</b></a>
+
+        <div class="hero-kicker">
+          <span></span>
+          ISLAND CONTROL SYSTEM
+          <span></span>
+        </div>
+
+        <h1>
+          I-<span>ISLAND</span>
+        </h1>
+
+        <p class="hero-title">
+          CONQUÉRIS. PROTÈGE. DOMINE.
+        </p>
+
+        <p class="intro">
+          Choisis une organisation, sélectionne un territoire
+          et lance un raid.
+          Après chaque prise de contrôle, le secteur passe
+          automatiquement sous protection jusqu'à
+          <strong>21h00 le troisième jour calendaire</strong>.
+        </p>
+
+        <a
+          class="hero-cta"
+          href="#control"
+        >
+          <span>ACCÉDER AU CONTRÔLE</span>
+          <b>↓</b>
+        </a>
+
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="scan-ring ring-1"></div><div class="scan-ring ring-2"></div><div class="scan-ring ring-3"></div>
+
+
+      <div
+        class="hero-visual"
+        aria-hidden="true"
+      >
+
+        <div class="scan-ring ring-1"></div>
+        <div class="scan-ring ring-2"></div>
+        <div class="scan-ring ring-3"></div>
+
         <div class="hero-photo"></div>
+
         <div class="hero-grid"></div>
-        <div class="hero-badge"><small>ISLAND</small><strong>CONTROL</strong><span>SECURE NODE // 01</span></div>
-        <div class="hero-line line-a"></div><div class="hero-line line-b"></div>
+
+        <div class="hero-badge">
+          <small>ISLAND</small>
+          <strong>CONTROL</strong>
+          <span>SECURE NODE // 01</span>
+        </div>
+
+        <div class="hero-line line-a"></div>
+        <div class="hero-line line-b"></div>
+
       </div>
+
     </section>
 
-    <section class="control-panel" id="control">
+
+    <!-- =====================================================
+         ORGANISATIONS
+         ===================================================== -->
+
+    <section
+      class="control-panel"
+      id="control"
+    >
+
       <div class="panel-heading">
-        <div><p class="eyebrow">01 / ORGANISATIONS</p><h2>CHOISIS TON CAMP</h2></div>
-        <p class="hint">Clique sur une organisation pour l'armer.</p>
+
+        <div>
+          <p class="eyebrow">
+            01 / ORGANISATIONS
+          </p>
+
+          <h2>
+            CHOISIS TON CAMP
+          </h2>
+        </div>
+
+        <p class="hint">
+          Clique sur une organisation pour l'armer.
+        </p>
+
       </div>
-      <div class="ticker-wrap"><div class="ticker" id="ticker"></div></div>
+
+
+      <div class="ticker-wrap">
+
+        <div
+          class="ticker"
+          id="ticker"
+        ></div>
+
+      </div>
+
+
       <div class="selection-bar">
-        <span class="selection-label">CHOIX ACTUEL</span>
-        <strong id="selectedFaction">AUCUN</strong>
-        <span class="selection-tip">→ puis sélectionne un territoire</span>
-        <button class="ghost" id="clearSelection">EFFACER</button>
+
+        <span class="selection-label">
+          CHOIX ACTUEL
+        </span>
+
+        <strong id="selectedFaction">
+          AUCUN
+        </strong>
+
+        <span class="selection-tip">
+          → puis sélectionne un territoire
+        </span>
+
+        <button
+          class="ghost"
+          id="clearSelection"
+          type="button"
+        >
+          EFFACER
+        </button>
+
       </div>
+
     </section>
+
+
+    <!-- =====================================================
+         TERRITOIRES
+         ===================================================== -->
 
     <section class="section-heading">
-      <div><p class="eyebrow">02 / TERRITOIRES</p><h2>LES ZONES DE L'ÎLE</h2></div>
+
+      <div>
+
+        <p class="eyebrow">
+          02 / TERRITOIRES
+        </p>
+
+        <h2>
+          LES ZONES DE L'ÎLE
+        </h2>
+
+      </div>
+
       <div class="section-rule"></div>
+
     </section>
-    <section class="territories" id="territories"></section>
+
+
+    <section
+      class="territories"
+      id="territories"
+    ></section>
+
+
+    <!-- =====================================================
+         RÈGLE DE PROTECTION
+         ===================================================== -->
 
     <section class="raid-info">
-      <div class="info-icon">!</div>
-      <div><strong>RÈGLE DE PROTECTION</strong><p>Après un raid réussi, le dernier détenteur devient le détenteur actuel et le secteur est verrouillé pendant 72 heures. L'ancien détenteur reste enregistré dans l'historique.</p></div>
+
+      <div class="info-icon">
+        !
+      </div>
+
+      <div>
+
+        <strong>
+          RÈGLE DE PROTECTION
+        </strong>
+
+        <p>
+          Après un raid réussi, le nouveau détenteur
+          prend le contrôle du secteur.
+          La protection expire à
+          <strong>21h00, heure de Paris, le troisième
+          jour calendaire</strong>.
+          L'ancien détenteur reste enregistré dans
+          l'historique.
+        </p>
+
+      </div>
+
     </section>
+
+
+    <!-- =====================================================
+         LÉGENDE
+         ===================================================== -->
 
     <section class="legend">
-      <div><span class="dot free"></span> RAID POSSIBLE</div>
-      <div><span class="dot protected"></span> SOUS PROTECTION</div>
-      <div><span class="dot occupied"></span> TERRITOIRE OCCUPÉ</div>
+
+      <div>
+        <span class="dot free"></span>
+        RAID POSSIBLE
+      </div>
+
+      <div>
+        <span class="dot protected"></span>
+        SOUS PROTECTION
+      </div>
+
+      <div>
+        <span class="dot occupied"></span>
+        TERRITOIRE OCCUPÉ
+      </div>
+
     </section>
+
   </main>
 
-  <div class="modal hidden" id="raidModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+  <!-- =====================================================
+       MODALE RAID
+       ===================================================== -->
+
+  <div
+    class="modal hidden"
+    id="raidModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
     <div class="modal-card">
-      <button class="close" id="closeModal" aria-label="Fermer">×</button>
-      <p class="eyebrow">03 / CONFIRMATION RAID</p>
-      <div class="modal-signal"><span></span> RAID PROTOCOL</div>
-      <h2 id="modalTitle">LANCER LE RAID ?</h2>
+
+      <button
+        class="close"
+        id="closeModal"
+        type="button"
+        aria-label="Fermer"
+      >
+        ×
+      </button>
+
+      <p class="eyebrow">
+        03 / CONFIRMATION RAID
+      </p>
+
+      <div class="modal-signal">
+        <span></span>
+        RAID PROTOCOL
+      </div>
+
+      <h2 id="modalTitle">
+        LANCER LE RAID ?
+      </h2>
+
       <p id="modalText"></p>
-      <div class="modal-actions"><button class="ghost" id="cancelRaid">ANNULER</button><button class="danger" id="confirmRaid">CONFIRMER LE RAID</button></div>
+
+      <div class="modal-actions">
+
+        <button
+          class="ghost"
+          id="cancelRaid"
+          type="button"
+        >
+          ANNULER
+        </button>
+
+        <button
+          class="danger"
+          id="confirmRaid"
+          type="button"
+        >
+          CONFIRMER LE RAID
+        </button>
+
+      </div>
+
     </div>
+
   </div>
 
-  <div class="toast" id="toast"></div>
-  <footer><span>I-ISLAND</span> <i>•</i> TERRITORY CONTROL SYSTEM <i>•</i> 72H PROTECTION</footer>
+
+  <!-- =====================================================
+       NOTIFICATION
+       ===================================================== -->
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <span>I-ISLAND</span>
+
+    <i>•</i>
+
+    TERRITORY CONTROL SYSTEM
+
+    <i>•</i>
+
+    PROTECTION // 21H PARIS
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
   <script src="script.js"></script>
+
 </body>
 </html>
