@@ -45,7 +45,7 @@ const ZONES = [
   }
 ];
 
-let supabase;
+let supabaseClient;
 let currentUser = null;
 let currentProfile = null;
 let selectedFaction = null;
@@ -160,7 +160,7 @@ function loadSupabaseLibrary() {
 async function loadCurrentUser() {
   const {
     data: { user }
-  } = await supabase.auth.getUser();
+  } = await supabaseClient.auth.getUser();
 
   currentUser = user || null;
 
@@ -185,7 +185,7 @@ async function loadCurrentUser() {
 }
 
 async function login(email, password) {
-  const { error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabaseClient.auth.signInWithPassword({
     email,
     password
   });
@@ -203,7 +203,7 @@ async function login(email, password) {
 }
 
 async function logout() {
-  await supabase.auth.signOut();
+  await supabaseClient.auth.signOut();
 
   currentUser = null;
   currentProfile = null;
@@ -801,7 +801,7 @@ async function confirmRaid() {
   button.disabled = true;
 
   const { data, error } =
-    await supabase.rpc('raid_territory', {
+    await supabaseClient.rpc('raid_territory', {
       p_territory_id: raidTarget.id,
       p_holder_name: selectedFaction
     });
@@ -861,7 +861,7 @@ async function changeRole(userId, role) {
   if (!isAdmin()) return;
 
   const { error } =
-    await supabase.rpc('set_user_role', {
+    await supabaseClient.rpc('set_user_role', {
       p_user_id: userId,
       p_role: role
     });
@@ -1125,7 +1125,7 @@ async function init() {
   try {
     await loadSupabaseLibrary();
 
-    supabase = window.supabase.createClient(
+    supabaseClient = window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_PUBLISHABLE_KEY
     );
@@ -1142,7 +1142,7 @@ async function init() {
 
     await loadTerritories();
 
-    supabase.auth.onAuthStateChange(
+    supabaseClient.auth.onAuthStateChange(
       async (_event, session) => {
         currentUser = session?.user || null;
 
